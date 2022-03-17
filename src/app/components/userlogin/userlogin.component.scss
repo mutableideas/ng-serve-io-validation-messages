@@ -1,0 +1,14 @@
+.user-login-form 
+{
+  &__label, &__input, &__validation-message {
+    display: block;
+  }
+
+  &__validation-message {
+    color: red;
+  }
+
+  &__button {
+    margin-top: 0.5em;
+  }
+}

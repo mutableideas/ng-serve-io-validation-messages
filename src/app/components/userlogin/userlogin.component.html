@@ -1,0 +1,15 @@
+<h2>User Login Form Example</h2>
+
+<form [formGroup]="userLoginForm" class="user-login-form">
+  
+  <label class="user-login-form__label">Email</label>
+  <input formControlName="email" />
+  <span class="user-login-form__validation-message" [ngServeValidationDisplay]="email" fieldName="Email"></span>
+
+  <label class="user-login-form__label">Password</label>
+  <input formControlName="password" class="user-login-form__input" />
+  <span class="user-login-form__validation-message" [ngServeValidationDisplay]="password" fieldName="Password"></span>
+
+  <button class="user-login-form__button" (click)="submitForm()">Submit</button>
+</form>
+  
