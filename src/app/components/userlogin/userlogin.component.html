@@ -1,7 +1,10 @@
 <h2>User Login Form Example</h2>
 
 <form [formGroup]="userLoginForm" class="user-login-form">
-  
+  <label class="user-login-form__label">First Name</label>
+  <input formControlName="firstName" />
+  <span class="user-login-form__validation-message" [ngServeValidationDisplay]="firstName" fieldName="First Name"></span>
+
   <label class="user-login-form__label">Email</label>
   <input formControlName="email" />
   <span class="user-login-form__validation-message" [ngServeValidationDisplay]="email" fieldName="Email"></span>

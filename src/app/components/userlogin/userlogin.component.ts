@@ -1,7 +1,14 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { ValidationMessageService } from '@ngserveio/validation-messages';
 
 const { email, required } = Validators;
+
+const customError = (ctrl: AbstractControl): ValidationErrors | null => {
+  return ctrl.value.trim().length > 0
+    ? null
+    : { customError: { prop1: 'any value' } };
+}
 
 @Component({
   selector: 'app-userlogin',
@@ -10,7 +17,14 @@ const { email, required } = Validators;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserloginComponent {
+  constructor(messageService: ValidationMessageService) {
+    messageService.addMessages({
+      customError: '{{fieldName}} for a custom error {{prop1}}.'
+    });
+  }
+
   public userLoginForm = new FormGroup({
+    firstName: new FormControl('', [ customError ]),
     email: new FormControl('', [ required, email ]),
     password: new FormControl('', [ required ])
   });
@@ -25,5 +39,9 @@ export class UserloginComponent {
 
   public get password(): FormControl {
     return this.userLoginForm.get('password') as FormControl;
+  }
+
+  public get firstName(): FormControl {
+    return this.userLoginForm.get('firstName') as FormControl;
   }
 }
