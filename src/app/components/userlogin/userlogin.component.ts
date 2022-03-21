@@ -1,47 +1,29 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { ValidationMessageService } from '@ngserveio/validation-messages';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-const { email, required } = Validators;
-
-const customError = (ctrl: AbstractControl): ValidationErrors | null => {
-  return ctrl.value.trim().length > 0
-    ? null
-    : { customError: { prop1: 'any value' } };
-}
+const { email, required, min } = Validators
 
 @Component({
   selector: 'app-userlogin',
   templateUrl: './userlogin.component.html',
-  styleUrls: ['./userlogin.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./userlogin.component.scss']
 })
 export class UserloginComponent {
-  constructor(messageService: ValidationMessageService) {
-    messageService.addMessages({
-      customError: '{{fieldName}} for a custom error {{prop1}}.'
-    });
-  }
-
-  public userLoginForm = new FormGroup({
-    firstName: new FormControl('', [ customError ]),
-    email: new FormControl('', [ required, email ]),
-    password: new FormControl('', [ required ])
+  public formGroup = new FormGroup({
+    email: new FormControl('', [ email, required ]),
+    firstName: new FormControl('', [ required, min(5) ]),
+    password: new FormControl('', [ required, min(8) ])
   });
 
-  public submitForm(): void {
-    console.log(this.userLoginForm.value);
-  }
-
   public get email(): FormControl {
-    return this.userLoginForm.get('email') as FormControl;
+    return this.formGroup.get('email') as FormControl;
   }
 
   public get password(): FormControl {
-    return this.userLoginForm.get('password') as FormControl;
+    return this.formGroup.get('password') as FormControl;
   }
 
   public get firstName(): FormControl {
-    return this.userLoginForm.get('firstName') as FormControl;
+    return this.formGroup.get('firstName') as FormControl;
   }
 }

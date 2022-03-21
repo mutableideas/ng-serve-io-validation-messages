@@ -1,18 +1,37 @@
-<h2>User Login Form Example</h2>
-
-<form [formGroup]="userLoginForm" class="user-login-form">
+<form [formGroup]="formGroup" class="user-login-form">
   <label class="user-login-form__label">First Name</label>
-  <input formControlName="firstName" />
-  <span class="user-login-form__validation-message" [ngServeValidationDisplay]="firstName" fieldName="First Name"></span>
+  <input class="user-login-form__input" type="text" formControlName="firstName" />
+  <span class="user-login-form__validation-message" 
+    *ngIf="(firstName.dirty || firstName.touched) && firstName.errors?.['required']">
+      First name is required
+  </span>
+  <span class="user-login-form__validation-message"
+    *ngIf="(firstName.dirty || firstName.touched) && firstName.errors?.['min']">
+      First Name must be 5.
+    </span>
 
   <label class="user-login-form__label">Email</label>
-  <input formControlName="email" />
-  <span class="user-login-form__validation-message" [ngServeValidationDisplay]="email" fieldName="Email"></span>
+  <input class="user-login-form__input" type="email" formControlName="email" />
+  <span class="user-login-form__validation-message"
+      *ngIf="(email.dirty || email.touched) && email.errors?.['email']">
+      Email is incorrect format
+  </span>
+  <span class="user-login-form__validation-message"
+    *ngIf="(email.dirty || email.touched) && email.errors?.['required']">
+      Email is required
+  </span>
+
 
   <label class="user-login-form__label">Password</label>
-  <input formControlName="password" class="user-login-form__input" />
-  <span class="user-login-form__validation-message" [ngServeValidationDisplay]="password" fieldName="Password"></span>
+  <input class="user-login-form__input" type="password" formControlName="password" />
+  <span class="user-login-form__validation-message"
+    *ngIf="(password.dirty || password.touched) && password.errors?.['required']">
+      Password is required
+  </span>
+  <span class="user-login-form__validation-message"
+        *ngIf="(password.dirty || password.touched) && password.errors?.['min']">
+      Password must be 8 or more characters
+  </span>
 
-  <button class="user-login-form__button" (click)="submitForm()">Submit</button>
+  <button class="user-login-form__button">Save</button>
 </form>
-  
