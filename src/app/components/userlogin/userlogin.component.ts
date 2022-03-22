@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 const { email, required, min } = Validators
@@ -6,7 +6,8 @@ const { email, required, min } = Validators
 @Component({
   selector: 'app-userlogin',
   templateUrl: './userlogin.component.html',
-  styleUrls: ['./userlogin.component.scss']
+  styleUrls: ['./userlogin.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserloginComponent {
   public formGroup = new FormGroup({
