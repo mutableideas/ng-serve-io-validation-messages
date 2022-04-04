@@ -1,36 +1,39 @@
 <form [formGroup]="formGroup" class="user-login-form">
   <label class="user-login-form__label">First Name</label>
-  <input class="user-login-form__input" type="text" formControlName="firstName" />
-  <span class="user-login-form__validation-message" 
-    *ngIf="(firstName.dirty || firstName.touched) && firstName.errors?.['required']">
-      First name is required
-  </span>
+  <input class="user-login-form__input" type="text"
+          formControlName="firstName" />
   <span class="user-login-form__validation-message"
-    *ngIf="(firstName.dirty || firstName.touched) && firstName.errors?.['min']">
-      First Name must be 5.
-    </span>
+        [ngServeValidationDisplay]="firstName"
+        fieldName="First Name">
+  </span>
 
   <label class="user-login-form__label">Email</label>
-  <input class="user-login-form__input" type="email" formControlName="email" />
+  <input class="user-login-form__input"
+          type="email"
+          formControlName="email" />
   <span class="user-login-form__validation-message"
-      *ngIf="(email.dirty || email.touched) && email.errors?.['email']">
-      Email is incorrect format
-  </span>
-  <span class="user-login-form__validation-message"
-    *ngIf="(email.dirty || email.touched) && email.errors?.['required']">
-      Email is required
+        [ngServeValidationDisplay]="email"
+        fieldName="Email">
   </span>
 
 
   <label class="user-login-form__label">Password</label>
-  <input class="user-login-form__input" type="password" formControlName="password" />
+  <input class="user-login-form__input"
+          type="password"
+          formControlName="password"
+  />
   <span class="user-login-form__validation-message"
-    *ngIf="(password.dirty || password.touched) && password.errors?.['required']">
-      Password is required
+        [ngServeValidationDisplay]="password"
+        fieldName="Password">
   </span>
+
+  <label class="user-login-form__label">Numeric Field</label>
+  <input class="user-login-form__input"
+        type="text"
+        formControlName="numericField" />
   <span class="user-login-form__validation-message"
-        *ngIf="(password.dirty || password.touched) && password.errors?.['min']">
-      Password must be 8 or more characters
+        [ngServeValidationDisplay]="numericField"
+        fieldName="NumericField">
   </span>
 
   <button class="user-login-form__button">Save</button>
