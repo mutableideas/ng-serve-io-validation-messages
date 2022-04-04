@@ -6,6 +6,7 @@ import { NgServeValidationDisplayModule } from '@ngserveio/validation-messages';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserloginComponent } from './components/userlogin/userlogin.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { UserloginComponent } from './components/userlogin/userlogin.component';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    NgServeValidationDisplayModule
+    NgServeValidationDisplayModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
