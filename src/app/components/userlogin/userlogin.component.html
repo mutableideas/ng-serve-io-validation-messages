@@ -1,40 +1,23 @@
-<form [formGroup]="formGroup" class="user-login-form">
-  <label class="user-login-form__label">First Name</label>
-  <input class="user-login-form__input" type="text"
-          formControlName="firstName" />
-  <span class="user-login-form__validation-message"
-        [ngServeValidationDisplay]="firstName"
-        fieldName="First Name">
-  </span>
+<ng-serve-form [formGroup]="formGroup" saveText="Send" [saveDisabled]="formGroup.invalid" (save)="save()" [saving]="(saving$ | async) || false">
+  <ng-serve-form-field [control]="firstName" label="First Name">
+    <input matInput
+        formControlName="firstName" />
+  </ng-serve-form-field>
 
-  <label class="user-login-form__label">Email</label>
-  <input class="user-login-form__input"
-          type="email"
+  <ng-serve-form-field [control]="email" label="Email">
+      <input matInput
           formControlName="email" />
-  <span class="user-login-form__validation-message"
-        [ngServeValidationDisplay]="email"
-        fieldName="Email">
-  </span>
+  </ng-serve-form-field>
 
-
-  <label class="user-login-form__label">Password</label>
-  <input class="user-login-form__input"
+  <ng-serve-form-field [control]="password" label="Password">
+      <input matInput
           type="password"
-          formControlName="password"
-  />
-  <span class="user-login-form__validation-message"
-        [ngServeValidationDisplay]="password"
-        fieldName="Password">
-  </span>
+          formControlName="password" />
+  </ng-serve-form-field>
 
-  <label class="user-login-form__label">Numeric Field</label>
-  <input class="user-login-form__input"
+  <ng-serve-form-field [control]="numericField" label="Numeric Field">
+      <input matInput
         type="text"
         formControlName="numericField" />
-  <span class="user-login-form__validation-message"
-        [ngServeValidationDisplay]="numericField"
-        fieldName="NumericField">
-  </span>
-
-  <button class="user-login-form__button">Save</button>
-</form>
+  </ng-serve-form-field>
+</ng-serve-form>

@@ -20,6 +20,8 @@
     "@angular/platform-browser": "~13.3.0",
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
+    "@ngserveio/form-services": "^3.0.2",
+    "@ngserveio/material-forms": "^3.0.4",
     "@ngserveio/validation-messages": "^2.0.1",
     "rxjs": "^7.5.4",
     "tslib": "^2.3.0",

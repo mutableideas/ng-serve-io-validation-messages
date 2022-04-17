@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { FormGroupSubmit } from '@ngserveio/form-services';
 import { ValidationMessageService } from '@ngserveio/validation-messages';
+import { BehaviorSubject, timer } from 'rxjs';
 
 const { email, required, minLength } = Validators
 
@@ -23,7 +25,9 @@ const isBetween = (min: number, max: number): ValidatorFn => {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserloginComponent {
-  public formGroup = new FormGroup({
+  public saving$ = new BehaviorSubject<boolean>(false);
+
+  public formGroup = new FormGroupSubmit({
     email: new FormControl('', [ email, required ]),
     firstName: new FormControl('', [ required, minLength(5) ]),
     password: new FormControl('', [ required, minLength(8) ]),
@@ -35,6 +39,14 @@ export class UserloginComponent {
       isBetween: '{{fieldName}} must be between {{min}} and {{max}}.',
       required: 'Please enter {{fieldName}}.'
     })
+  }
+
+  public save(): void {
+    this.saving$.next(true);
+
+    timer(2000).subscribe(() => {
+      this.saving$.next(false);
+    });
   }
 
   public get email(): FormControl {
