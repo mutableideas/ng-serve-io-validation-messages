@@ -1,0 +1,9 @@
+<ul>
+  <li *ngFor="let product of products | keyvalue">
+    <a [routerLink]="product.key">
+      {{ product.value.name }}
+    </a>
+  </li>
+</ul>
+
+<router-outlet></router-outlet>

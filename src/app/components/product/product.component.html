@@ -1,0 +1,6 @@
+<h2>{{ (product$ | async)?.name }}</h2>
+<p>{{ (product$ | async)?.description }}</p>
+
+<button (click)="addToCart()">Add To Cart</button>
+<br />
+<button routerLink="/cart">Cart</button>

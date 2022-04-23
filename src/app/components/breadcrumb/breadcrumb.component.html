@@ -1,0 +1,15 @@
+<ng-serve-breadcrumb [itemTemplate]="crumbTemplate">
+  <ul>
+    <ng-template #crumbTemplate
+                let-crumb
+                let-index="index"
+                let-crumbLength="length"
+                let-last="last">
+      <li>
+        <a [routerLink]="crumb.path">
+          {{ crumb.label | async }}
+        </a>
+      </li>
+    </ng-template>
+  </ul>
+</ng-serve-breadcrumb>

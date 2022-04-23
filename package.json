@@ -22,6 +22,7 @@
     "@angular/router": "~13.3.0",
     "@ngserveio/form-services": "^3.0.2",
     "@ngserveio/material-forms": "^3.0.4",
+    "@ngserveio/navigation": "^3.1.0",
     "@ngserveio/validation-messages": "^2.0.1",
     "rxjs": "^7.5.4",
     "tslib": "^2.3.0",
